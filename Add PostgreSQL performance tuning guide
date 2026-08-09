@@ -1,0 +1,48 @@
+# PostgreSQL Streaming Replication
+
+## Overview
+
+This document covers PostgreSQL physical streaming replication.
+
+Topics covered:
+
+- Primary and Standby
+- WAL Sender
+- WAL Receiver
+- Streaming replication
+- Replication roles
+- pg_hba.conf
+- Primary configuration
+- Standby configuration
+- Replication monitoring
+- Replication lag
+- Synchronous replication
+- Asynchronous replication
+- Failover concepts
+- Production architecture
+
+---
+
+# 1. Replication Architecture
+
+Basic architecture:
+
+```text
+                 APPLICATION
+                      |
+                      v
+                PRIMARY SERVER
+                      |
+                      |
+                     WAL
+                      |
+                      v
+                WAL SENDER
+                      |
+              PostgreSQL Network
+                      |
+                      v
+                WAL RECEIVER
+                      |
+                      v
+                STANDBY SERVER
